@@ -1,0 +1,3 @@
+name: BattleOfBuilders
+version: ${project.version}
+main: com.github.aruru_weed.battleofbuilders.BattleOfBuilders
