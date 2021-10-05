@@ -1,6 +1,5 @@
 package com.github.aruru_weed.battleofbuilders;
 
-import com.github.aruru_weed.battleofbuilders.api.BoBSession;
 import com.github.aruru_weed.battleofbuilders.api.GamePlayer;
 import com.github.aruru_weed.battleofbuilders.api.GameTeam;
 import com.github.aruru_weed.battleofbuilders.api.GameWorld;
@@ -8,13 +7,13 @@ import org.bukkit.World;
 
 import java.util.List;
 
-public class BoBGameWorld implements GameWorld {
+public class BoBWorld implements GameWorld {
     BoBSession session;
     World world;
     List<GameTeam> teams;
     List<GameTeam> losers;
 
-    public BoBGameWorld(BoBSession session, World world, List<GameTeam> teams) {
+    public BoBWorld(BoBSession session, World world, List<GameTeam> teams) {
         this.session = session;
         this.world = world;
         this.teams = teams;
@@ -35,6 +34,11 @@ public class BoBGameWorld implements GameWorld {
         return world;
     }
 
+    @Override
+    public void start() {
+        // TODO spawn players
+    }
+
     public boolean addLoser(GameTeam loseTeam) {
         losers.add(loseTeam);
 
@@ -42,10 +46,10 @@ public class BoBGameWorld implements GameWorld {
             for (GameTeam team : teams)
                 if (losers.contains(team)) {
                     for (GamePlayer loser : team.getMembers())
-                        loser.lose();
+                        ((BoBPlayer)loser).lose();
                 } else {
                     for (GamePlayer winner : team.getMembers())
-                        winner.win();
+                        ((BoBPlayer)winner).win();
                 }
             session.gameEnd();
             return true;

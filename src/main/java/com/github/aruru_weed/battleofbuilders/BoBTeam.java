@@ -1,6 +1,5 @@
 package com.github.aruru_weed.battleofbuilders;
 
-import com.github.aruru_weed.battleofbuilders.api.BoBSession;
 import com.github.aruru_weed.battleofbuilders.api.GamePlayer;
 import com.github.aruru_weed.battleofbuilders.api.GameTeam;
 import com.github.aruru_weed.battleofbuilders.api.Tower;
@@ -9,13 +8,15 @@ import org.bukkit.scoreboard.Team;
 
 import java.util.List;
 
-public class BoBGameTeam implements GameTeam {
-    BoBGameWorld world;
+public class BoBTeam implements GameTeam {
+    BoBWorld world;
     Tower mainTower;
     List<Tower> subTowers;
     List<Tower> breakTowers;
     List<GamePlayer> members;
     boolean lose = false;
+    Team team = null;
+    String name;
 
     public void losing() {
         world.addLoser(this);
@@ -59,7 +60,17 @@ public class BoBGameTeam implements GameTeam {
 
     @Override
     public Team getTeam() {
-        return null;
+        return team;
+    }
+
+    @Override
+    public String name() {
+        return name;
+    }
+
+    @Override
+    public void setName(String str) {
+        name = str;
     }
 
     @Override

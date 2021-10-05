@@ -8,4 +8,5 @@ public interface GameWorld extends BoBObject{
     List<GameTeam> getTeams();
 
     World getWorld();
+    void start();
 }

@@ -16,5 +16,8 @@ public interface GameTeam extends BoBObject {
 
     Team getTeam();
 
+    String name();
+    void setName(String str);
+
     boolean isLose();
 }

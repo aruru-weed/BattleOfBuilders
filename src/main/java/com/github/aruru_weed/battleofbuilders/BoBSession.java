@@ -1,5 +1,6 @@
-package com.github.aruru_weed.battleofbuilders.api;
+package com.github.aruru_weed.battleofbuilders;
 
+import com.github.aruru_weed.battleofbuilders.api.GameWorld;
 import com.github.aruru_weed.battleofbuilders.api.event.BoBGameEndEvent;
 import com.github.aruru_weed.battleofbuilders.api.event.BoBGameStartEvent;
 import org.bukkit.World;
@@ -33,6 +34,7 @@ public class BoBSession {
 
     public void gameStart(){
         getServer().getPluginManager().callEvent(new BoBGameStartEvent(this));
+        gameWorld.start();
     }
 
     public void gameEnd(){
